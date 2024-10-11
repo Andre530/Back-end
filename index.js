@@ -84,15 +84,15 @@ app.post('/produtos', (req, res) => {
 
 });
 
-app.delete('/fds', (req, res) => {
+app.delete('/produtos', (req, res) => {
     const numero = req.body.numero;
     produtos.splice(numero, 1);
-    console.log(vetor);
-    res.status(201).json({ mensagem: 'é DELETE' });
+    console.log(cartao + 'deletado');
+    res.status(201).json({ mensagem: 'Deu Boa o Delete' + cartao});
 
 });
 
-app.put('/fds', (req, res) => {
+app.put('/produtos', (req, res) => {
     const numero = req.body.numero;
     const mensagem = req.body.mensagem;
     produtos[numero], mensagem = mensagem;
