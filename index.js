@@ -1,5 +1,14 @@
-const express = require('express');
 const cors = require('cors');
+const express = require('express');
+const admin= require('firebase-admin')
+
+const serviceAccount = require('./Chave.json')
+const e = require ('express')
+
+admin.intializeApp({
+    credential: admin.credential.cert(serviceAccount),
+})
+const bd = admin.firestore()
 
 const app = express();
 const porta = 3000;
