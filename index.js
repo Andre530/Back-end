@@ -3,7 +3,6 @@ const express = require('express');
 const admin= require('firebase-admin')
 
 const serviceAccount = require('./Chave.json')
-const e = require ('express')
 
 admin.intializeApp({
     credential: admin.credential.cert(serviceAccount),
@@ -79,10 +78,23 @@ let produtos = [
     }
 ];
 
-app.get('/produtos', (req, res) => {
-    res.status(200).json({ produtos });
-    console.log('deu certin')
-});
+app.get('/produtos', async (req, res) => {
+try{
+    const response = await bd.collection('cartao').get()
+    const cartoes = response.docs.map(doc => ({
+        id: doc.id, ...doc.data(),
+    }))
+    console.log(cartoes)
+    res.status(200).json({cartoes})
+
+}catch(e){
+    console.log(e)
+}
+
+res.staus(200).json({cartoes})
+console.log(bah)
+})
+ 
 
 app.post('/produtos', (req, res) => {
     const { nome, valor, img } = req.body;
