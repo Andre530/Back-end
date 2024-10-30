@@ -121,7 +121,7 @@ app.post('/produtos', async (req, res) => {
         console.log('Novo cartao nao cadastrado, imagem invalida')
     } else {
         try {
-            const novoCartaoRef = await db.colletion('cartao').add({
+            const novoCartaoRef = await bd.colletion('cartao').add({
                 nome,
                 valor,
                 img,
@@ -137,7 +137,7 @@ app.post('/produtos', async (req, res) => {
 })
 
 app.delete('/produtos', async (req, res) => {
-    const id = req.body.catao;
+    const id = req.body.cartao;
     if (!id) {
         res.status(400).json({ mensagem: 'ID do cartao nao fornecido' })
         console.log('Novo cartao nao cadastrado, o ID é obrigatorio')
@@ -145,7 +145,7 @@ app.delete('/produtos', async (req, res) => {
         try {
             const cartaoRef = bd.collection('cartao').doc(id)
             const doc = await cartaoRef.get()
-            if (!doc.exist) {
+            if (!doc.exists) {
                 res.status(404).json({ mensagem: 'Cartao com Id ' + cartao + 'nao encontrado' })
                 console.log('cartao nao encontrado')
             } else {
@@ -166,9 +166,9 @@ if(!id) {
     res.status(400).json({mensagem: 'ID do cartao nao fornecido'})
     console.log('Cartao nao atualizado, ID invalido.')
 } else {
-    try{ const cartaoRef = db.collection('cartao').doc(id)
+    try{ const cartaoRef = bd.collection('cartao').doc(id)
         const doc = await cartaoRef.get()
-        if (!doc.exist) {
+        if (!doc.exists) {
             res.status(404).json({mensagem: 'cartao com ID' + id + 'nao encontrado'})
             console.log('Cartao nao encontrado')
         } else{
