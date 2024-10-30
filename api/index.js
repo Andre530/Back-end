@@ -23,73 +23,72 @@ admin.initializeApp({
 const bd = admin.firestore()
 
 const app = express();
-const porta = 3000;
 
 app.use(cors());
 app.use(express.json());
 
-let produtos = [
-    {
-        nome: "CARTAO1",
-        valor: "R$9,99",
-        img: 'https://services.meteored.com/img/article/o-misterio-da-antimateria-solucionado-novo-experimento-comprova-como-a-antimateria-interage-1695942655165_1280.png'
-    },
-    {
-        nome: "CARTAO2",
-        valor: "R$14,50",
-        img: 'https://services.meteored.com/img/article/o-misterio-da-antimateria-solucionado-novo-experimento-comprova-como-a-antimateria-interage-1695942655165_1280.png'
-    },
-    {
-        nome: "CARTAO3",
-        valor: "R$25,00",
-        img: 'https://services.meteored.com/img/article/o-misterio-da-antimateria-solucionado-novo-experimento-comprova-como-a-antimateria-interage-1695942655165_1280.png'
-    },
-    {
-        nome: "CARTAO4",
-        valor: "R$34,90",
-        img: 'https://services.meteored.com/img/article/o-misterio-da-antimateria-solucionado-novo-experimento-comprova-como-a-antimateria-interage-1695942655165_1280.png'
-    },
-    {
-        nome: "CARTAO5",
-        valor: "R$49,99",
-        img: 'https://services.meteored.com/img/article/o-misterio-da-antimateria-solucionado-novo-experimento-comprova-como-a-antimateria-interage-1695942655165_1280.png'
-    },
-    {
-        nome: "CARTAO6",
-        valor: "R$59,00",
-        img: 'https://services.meteored.com/img/article/o-misterio-da-antimateria-solucionado-novo-experimento-comprova-como-a-antimateria-interage-1695942655165_1280.png'
-    },
-    {
-        nome: "CARTAO7",
-        valor: "R$79,99",
-        img: 'https://services.meteored.com/img/article/o-misterio-da-antimateria-solucionado-novo-experimento-comprova-como-a-antimateria-interage-1695942655165_1280.png'
-    },
-    {
-        nome: "CARTAO8",
-        valor: "R$99,90",
-        img: 'https://services.meteored.com/img/article/o-misterio-da-antimateria-solucionado-novo-experimento-comprova-como-a-antimateria-interage-1695942655165_1280.png'
-    },
-    {
-        nome: "CARTAO9",
-        valor: "R$129,50",
-        img: 'https://services.meteored.com/img/article/o-misterio-da-antimateria-solucionado-novo-experimento-comprova-como-a-antimateria-interage-1695942655165_1280.png'
-    },
-    {
-        nome: "CARTAO10",
-        valor: "R$199,99",
-        img: 'https://services.meteored.com/img/article/o-misterio-da-antimateria-solucionado-novo-experimento-comprova-como-a-antimateria-interage-1695942655165_1280.png'
-    },
-    {
-        nome: "CARTAO11",
-        valor: "R$299,00",
-        img: 'https://services.meteored.com/img/article/o-misterio-da-antimateria-solucionado-novo-experimento-comprova-como-a-antimateria-interage-1695942655165_1280.png'
-    },
-    {
-        nome: "CARTAO12",
-        valor: "R$49,99",
-        img: 'https://services.meteored.com/img/article/o-misterio-da-antimateria-solucionado-novo-experimento-comprova-como-a-antimateria-interage-1695942655165_1280.png'
-    }
-];
+// let produtos = [
+//     {
+//         nome: "CARTAO1",
+//         valor: "R$9,99",
+//         img: 'https://services.meteored.com/img/article/o-misterio-da-antimateria-solucionado-novo-experimento-comprova-como-a-antimateria-interage-1695942655165_1280.png'
+//     },
+//     {
+//         nome: "CARTAO2",
+//         valor: "R$14,50",
+//         img: 'https://services.meteored.com/img/article/o-misterio-da-antimateria-solucionado-novo-experimento-comprova-como-a-antimateria-interage-1695942655165_1280.png'
+//     },
+//     {
+//         nome: "CARTAO3",
+//         valor: "R$25,00",
+//         img: 'https://services.meteored.com/img/article/o-misterio-da-antimateria-solucionado-novo-experimento-comprova-como-a-antimateria-interage-1695942655165_1280.png'
+//     },
+//     {
+//         nome: "CARTAO4",
+//         valor: "R$34,90",
+//         img: 'https://services.meteored.com/img/article/o-misterio-da-antimateria-solucionado-novo-experimento-comprova-como-a-antimateria-interage-1695942655165_1280.png'
+//     },
+//     {
+//         nome: "CARTAO5",
+//         valor: "R$49,99",
+//         img: 'https://services.meteored.com/img/article/o-misterio-da-antimateria-solucionado-novo-experimento-comprova-como-a-antimateria-interage-1695942655165_1280.png'
+//     },
+//     {
+//         nome: "CARTAO6",
+//         valor: "R$59,00",
+//         img: 'https://services.meteored.com/img/article/o-misterio-da-antimateria-solucionado-novo-experimento-comprova-como-a-antimateria-interage-1695942655165_1280.png'
+//     },
+//     {
+//         nome: "CARTAO7",
+//         valor: "R$79,99",
+//         img: 'https://services.meteored.com/img/article/o-misterio-da-antimateria-solucionado-novo-experimento-comprova-como-a-antimateria-interage-1695942655165_1280.png'
+//     },
+//     {
+//         nome: "CARTAO8",
+//         valor: "R$99,90",
+//         img: 'https://services.meteored.com/img/article/o-misterio-da-antimateria-solucionado-novo-experimento-comprova-como-a-antimateria-interage-1695942655165_1280.png'
+//     },
+//     {
+//         nome: "CARTAO9",
+//         valor: "R$129,50",
+//         img: 'https://services.meteored.com/img/article/o-misterio-da-antimateria-solucionado-novo-experimento-comprova-como-a-antimateria-interage-1695942655165_1280.png'
+//     },
+//     {
+//         nome: "CARTAO10",
+//         valor: "R$199,99",
+//         img: 'https://services.meteored.com/img/article/o-misterio-da-antimateria-solucionado-novo-experimento-comprova-como-a-antimateria-interage-1695942655165_1280.png'
+//     },
+//     {
+//         nome: "CARTAO11",
+//         valor: "R$299,00",
+//         img: 'https://services.meteored.com/img/article/o-misterio-da-antimateria-solucionado-novo-experimento-comprova-como-a-antimateria-interage-1695942655165_1280.png'
+//     },
+//     {
+//         nome: "CARTAO12",
+//         valor: "R$49,99",
+//         img: 'https://services.meteored.com/img/article/o-misterio-da-antimateria-solucionado-novo-experimento-comprova-como-a-antimateria-interage-1695942655165_1280.png'
+//     }
+// ];
 
 app.get('/produtos', async (req, res) => {
     try {
@@ -104,7 +103,7 @@ app.get('/produtos', async (req, res) => {
         console.log(e)
     }
 
-    res.staus(200).json({ cartoes })
+    res.status(200).json({ cartoes })
     console.log(bah)
 })
 
