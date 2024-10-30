@@ -191,6 +191,6 @@ if(!id) {
 
 module.exports = app
 
-app.listen(3000, () =>{
-    console.log('rodando')
-})
+// app.listen(3000, () =>{
+//     console.log('rodando')
+// })
