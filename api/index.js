@@ -92,7 +92,7 @@ app.use(express.json());
 
 app.get('/produtos', async (req, res) => {
     try {
-        const response = await bd.collection('cartao').get()
+        const response = await bd.collection('cartoes').get()
         const cartoes = response.docs.map(doc => ({
             id: doc.id, ...doc.data(),
         }))
@@ -121,7 +121,7 @@ app.post('/produtos', async (req, res) => {
         console.log('Novo cartao nao cadastrado, imagem invalida')
     } else {
         try {
-            const novoCartaoRef = await bd.colletion('cartao').add({
+            const novoCartaoRef = await bd.colletion('cartoes').add({
                 nome,
                 valor,
                 img,
@@ -166,7 +166,7 @@ if(!id) {
     res.status(400).json({mensagem: 'ID do cartao nao fornecido'})
     console.log('Cartao nao atualizado, ID invalido.')
 } else {
-    try{ const cartaoRef = bd.collection('cartao').doc(id)
+    try{ const cartaoRef = bd.collection('cartoes').doc(id)
         const doc = await cartaoRef.get()
         if (!doc.exists) {
             res.status(404).json({mensagem: 'cartao com ID' + id + 'nao encontrado'})
