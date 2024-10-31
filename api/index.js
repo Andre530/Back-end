@@ -143,7 +143,7 @@ app.delete('/produtos', async (req, res) => {
         console.log('Novo cartao nao cadastrado, o ID é obrigatorio')
     } else {
         try {
-            const cartaoRef = bd.collection('cartao').doc(id)
+            const cartaoRef = bd.collection('cartoes').doc(id)
             const doc = await cartaoRef.get()
             if (!doc.exists) {
                 res.status(404).json({ mensagem: 'Cartao com Id ' + cartao + 'nao encontrado' })
